@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Client } from '@stomp/stompjs';
+import { API_BASE_URL } from '@/lib/api';
 
 export interface LiveMessage {
   id: string;
@@ -24,10 +25,7 @@ export function useLiveInteraction(slug: string) {
   useEffect(() => {
     if (!slug) return;
 
-    // Use ws:// for local, wss:// for prod.
-    const wsUrl = import.meta.env.PROD 
-      ? `wss://${window.location.host}/ws`
-      : `ws://localhost:8080/ws`; // Adjust to match API port
+    const wsUrl = API_BASE_URL.replace(/^http/, "ws") + "/ws";
 
     const client = new Client({
       brokerURL: wsUrl,

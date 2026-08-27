@@ -1,20 +1,13 @@
 import { useEffect, useRef } from "react";
 import { Client } from "@stomp/stompjs";
-import { getAuthToken } from "@/lib/api";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
+import { API_BASE_URL, getAuthToken } from "@/lib/api";
 
 /**
  * WebSocket URL to the backend's STOMP `/ws` endpoint.
- * - VITE_API_BASE_URL empty (same-origin, dev via Vite proxy / prod via nginx·Caddy): use current host.
- * - VITE_API_BASE_URL set private API domain: change http(s):// → ws(s)://.
+ * VITE_API_BASE_URL is converted from http(s):// to ws(s)://.
  */
 function buildBrokerUrl(): string {
-  if (API_BASE_URL) {
-    return API_BASE_URL.replace(/^http/, "ws") + "/ws";
-  }
-  const scheme = window.location.protocol === "https:" ? "wss" : "ws";
-  return `${scheme}://${window.location.host}/ws`;
+  return API_BASE_URL.replace(/^http/, "ws") + "/ws";
 }
 
 /**

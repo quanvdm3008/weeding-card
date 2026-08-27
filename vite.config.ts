@@ -4,24 +4,12 @@ import path from "path";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, import.meta.dirname, "");
-  const apiProxyTarget = env.VITE_API_PROXY_TARGET ?? "http://localhost:8080";
   const siteUrl = (process.env.VITE_SITE_URL || env.VITE_SITE_URL || "http://localhost:3000").replace(/\/+$/, "");
 
   return {
     server: {
       host: "::",
       port: 5173,
-      proxy: {
-        "/api": {
-          target: apiProxyTarget,
-          changeOrigin: true,
-        },
-        "/ws": {
-          target: apiProxyTarget,
-          changeOrigin: true,
-          ws: true,
-        },
-      },
       hmr: {
         overlay: false,
       },

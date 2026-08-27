@@ -26,7 +26,8 @@ export class ApiError extends Error {
   }
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+if (!API_BASE_URL) throw new Error("VITE_API_BASE_URL is required");
 const USE_MOCK_API = import.meta.env.DEV && import.meta.env.VITE_USE_MOCK_API === "true";
 
 /* ---- JWT access/refresh token lives in memory; session cookie maintains web login via reload. ---- */
