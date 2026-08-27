@@ -1,0 +1,1387 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Ephesis&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Romantic Blush palette
+       #FFF8F5 background, #F8E1E7 blush, #C9A96E champagne gold, #2D1B1B deep rose-black */
+    --background: 32 70% 98%;
+    --foreground: 350 24% 13%;
+
+    --card: 30 60% 99%;
+    --card-foreground: 350 24% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 25% 14%;
+
+    --primary: 346 38% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 345 50% 95%;
+    --secondary-foreground: 0 25% 18%;
+
+    --muted: 28 38% 94%;
+    --muted-foreground: 350 10% 43%;
+
+    --accent: 39 45% 56%;
+    --accent-foreground: 0 25% 14%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 345 30% 88%;
+    --input: 345 30% 90%;
+    --ring: 38 47% 61%;
+
+    --radius: 0.5rem;
+
+    /* Operational UI scale: shared by dashboard, marketplace and editor chrome. */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --control-height: 2.5rem;
+    --panel-width-sm: 16rem;
+    --panel-width-md: 21.25rem;
+
+    /* Brand tokens */
+    --rose: 346 45% 55%;
+    --rose-light: 345 60% 93%;
+    --gold: 38 47% 61%;
+    --gold-light: 38 60% 88%;
+    --sage: 140 20% 55%;
+    --sage-light: 140 20% 90%;
+    --blush: 345 70% 95%;
+    --cream: 30 50% 97%;
+    --ink: 0 25% 14%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, hsl(32 70% 98%) 0%, hsl(345 48% 97%) 52%, hsl(32 70% 99%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(42 45% 74%) 0%, hsl(39 45% 56%) 52%, hsl(32 38% 48%) 100%);
+    --gradient-rose-gold: linear-gradient(135deg, hsl(346 35% 60%) 0%, hsl(39 45% 56%) 100%);
+    --gradient-blush: linear-gradient(180deg, hsl(345 48% 97%), hsl(32 70% 99%));
+    --gradient-ink: linear-gradient(135deg, hsl(0 25% 14%) 0%, hsl(346 30% 22%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 8px 28px -18px hsl(346 32% 35% / 0.22);
+    --shadow-elegant: 0 22px 70px -36px hsl(346 32% 35% / 0.30);
+    --shadow-gold: 0 14px 42px -24px hsl(39 45% 45% / 0.45);
+    --shadow-card: 0 1px 0 hsl(0 0% 100% / 0.82) inset, 0 18px 52px -34px hsl(350 24% 20% / 0.24);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --font-display: 'Cormorant Garamond', 'Playfair Display', 'Cinzel', serif;
+    --font-serif: 'Playfair Display', 'Cormorant Garamond', serif;
+    --font-script: 'Great Vibes', 'Alex Brush', 'Dancing Script', cursive;
+    --font-body: 'Be Vietnam Pro', 'Inter', 'Poppins', sans-serif;
+
+    /* Premium tokens */
+    --ivory: 30 50% 97%;
+    --rose-gold: 346 45% 72%;
+    --soft-pink: 345 60% 93%;
+    --beige: 30 30% 90%;
+
+    /* Cinematic gradients */
+    --gradient-luxury: linear-gradient(135deg, hsl(38 55% 92%) 0%, hsl(345 50% 95%) 50%, hsl(30 40% 97%) 100%);
+    --gradient-cinematic: linear-gradient(180deg, hsl(345 30% 10%) 0%, hsl(0 20% 15%) 100%);
+    --gradient-champagne: linear-gradient(135deg, hsl(38 60% 85%) 0%, hsl(38 47% 75%) 50%, hsl(28 45% 68%) 100%);
+  }
+
+  .dark {
+    --background: 0 25% 8%;
+    --foreground: 30 40% 94%;
+    --card: 0 20% 11%;
+    --card-foreground: 30 40% 94%;
+    --popover: 0 25% 10%;
+    --popover-foreground: 30 40% 94%;
+    --primary: 346 55% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 15% 16%;
+    --secondary-foreground: 30 40% 94%;
+    --muted: 0 15% 16%;
+    --muted-foreground: 30 15% 65%;
+    --accent: 38 50% 60%;
+    --accent-foreground: 0 25% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 15% 20%;
+    --input: 0 15% 20%;
+    --ring: 38 50% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background: hsl(var(--background));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+
+  ::selection {
+    background: hsl(var(--gold) / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .guided-editor-shell-luxury {
+    --background: 36 18% 7%;
+    --foreground: 42 32% 91%;
+    --card: 36 17% 9%;
+    --card-foreground: 42 32% 91%;
+    --popover: 36 17% 9%;
+    --popover-foreground: 42 32% 91%;
+    --primary: 45 55% 53%;
+    --primary-foreground: 36 22% 7%;
+    --secondary: 38 14% 14%;
+    --secondary-foreground: 42 32% 91%;
+    --muted: 38 12% 14%;
+    --muted-foreground: 40 14% 61%;
+    --accent: 45 55% 53%;
+    --accent-foreground: 36 22% 7%;
+    --border: 43 24% 22%;
+    --input: 43 20% 24%;
+    --ring: 45 55% 53%;
+    color-scheme: dark;
+  }
+
+  .guided-editor-shell-luxury aside {
+    box-shadow: inset -1px 0 0 hsl(45 55% 53% / 0.12);
+  }
+
+  .guided-editor-shell-luxury main > div:first-child {
+    box-shadow: inset 0 -1px 0 hsl(45 55% 53% / 0.12);
+  }
+
+  .guided-editor-shell-luxury .glass-card {
+    background: hsl(var(--card) / 0.96);
+    border-color: hsl(var(--border) / 0.7);
+    box-shadow: none;
+  }
+
+  .wedding-invitation-shell {
+    --invitation-heading-font: var(--font-display);
+    --invitation-body-font: var(--font-body);
+    --invitation-heading-weight: 600;
+    --invitation-accent-color: #c9a96e;
+  }
+
+  .wedding-invitation-shell .font-display,
+  .wedding-invitation-shell .font-serif,
+  .wedding-invitation-shell h1,
+  .wedding-invitation-shell h2,
+  .wedding-invitation-shell h3,
+  .wedding-invitation-shell h4 {
+    font-family: var(--invitation-heading-font) !important;
+  }
+
+  .wedding-invitation-shell .font-body,
+  .wedding-invitation-shell .font-sans {
+    font-family: var(--invitation-body-font) !important;
+  }
+
+  .wedding-invitation-shell h1,
+  .wedding-invitation-shell h2,
+  .wedding-invitation-shell h3 {
+    font-weight: var(--invitation-heading-weight) !important;
+  }
+
+  .wedding-invitation-shell[data-heading-case="uppercase"] h1,
+  .wedding-invitation-shell[data-heading-case="uppercase"] h2,
+  .wedding-invitation-shell[data-heading-case="uppercase"] h3 {
+    text-transform: uppercase;
+  }
+
+  .wedding-invitation-shell[data-accent-style="underline"] h2::after,
+  .wedding-invitation-shell[data-accent-style="underline"] h3::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin: 0.65rem auto 0;
+    background: var(--invitation-accent-color);
+  }
+
+  .wedding-invitation-shell[data-accent-style="highlight"] h2,
+  .wedding-invitation-shell[data-accent-style="highlight"] h3 {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--invitation-accent-color) 45%, transparent);
+    text-decoration-thickness: 0.3em;
+    text-underline-offset: -0.12em;
+    text-decoration-skip-ink: none;
+  }
+
+  .wedding-invitation-shell[data-accent-style="editorial"] h1,
+  .wedding-invitation-shell[data-accent-style="editorial"] h2 {
+    text-shadow: 3px 3px 0 color-mix(in srgb, var(--invitation-accent-color) 28%, transparent);
+  }
+
+  .text-gradient-rose {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-rose-gold);
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold);
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .bg-gradient-rose-gold {
+    background: var(--gradient-rose-gold);
+  }
+
+  .bg-gradient-blush {
+    background: var(--gradient-blush);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl border border-white/50;
+    background: hsl(0 0% 100% / 0.72);
+    box-shadow: var(--shadow-card);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .glass-nav {
+    @apply backdrop-blur-2xl border-b;
+    background: hsla(18, 100%, 98%, 0.72);
+    border-color: hsl(var(--border) / 0.6);
+  }
+
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.6), transparent);
+  }
+
+  .ornament-line {
+    @apply flex items-center gap-3 text-accent;
+  }
+  .ornament-line::before,
+  .ornament-line::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.5), transparent);
+  }
+
+  .premium-card {
+    @apply relative overflow-hidden rounded-2xl border bg-card transition-all duration-300;
+    border-color: hsl(var(--border) / 0.7);
+    box-shadow: var(--shadow-card);
+  }
+  .premium-card:hover {
+    box-shadow: var(--shadow-elegant);
+    transform: translateY(-2px);
+    border-color: hsl(var(--gold) / 0.5);
+  }
+
+  .btn-luxury {
+    @apply relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-body font-semibold text-sm md:text-base text-primary-foreground overflow-hidden transition-all duration-300;
+    background: var(--gradient-rose-gold);
+    box-shadow: var(--shadow-gold);
+  }
+  .btn-luxury::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 20%, hsla(0,0%,100%,0.35) 50%, transparent 80%);
+    transform: translateX(-120%);
+    transition: transform 0.8s ease;
+  }
+  .btn-luxury:hover::before {
+    transform: translateX(120%);
+  }
+  .btn-luxury:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 48px -10px hsl(38 50% 55% / 0.5);
+  }
+
+  .btn-ghost-luxury {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-body font-semibold text-sm md:text-base border transition-all duration-300;
+    border-color: hsl(var(--ink) / 0.85);
+    color: hsl(var(--ink));
+    background: transparent;
+  }
+  .btn-ghost-luxury:hover {
+    background: hsl(var(--ink));
+    color: hsl(var(--background));
+  }
+
+  .floating-petals {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .noise-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.7'/></svg>");
+    mix-blend-mode: multiply;
+  }
+
+  .section-shell {
+    @apply relative overflow-hidden px-4 py-20 md:py-28;
+  }
+
+  .section-inner {
+    @apply relative mx-auto max-w-7xl;
+  }
+
+  .section-eyebrow {
+    @apply font-body text-[11px] font-semibold uppercase tracking-[0.34em] text-accent;
+  }
+
+  .section-title {
+    @apply font-display text-4xl font-medium leading-[1.05] text-foreground md:text-6xl;
+  }
+
+  .section-copy {
+    @apply font-body text-base leading-8 text-muted-foreground md:text-lg;
+  }
+
+  .luxury-surface {
+    @apply rounded-2xl border bg-card/80 backdrop-blur-xl;
+    border-color: hsl(var(--border) / 0.66);
+    box-shadow: var(--shadow-card);
+  }
+
+  .floral-divider {
+    @apply pointer-events-none absolute left-0 right-0 h-16 text-accent/25;
+  }
+
+  .floral-corner {
+    @apply pointer-events-none absolute text-accent/20;
+  }
+
+  .image-polish {
+    @apply overflow-hidden rounded-2xl;
+    box-shadow: 0 24px 80px -44px hsl(350 30% 16% / 0.42);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(5deg); }
+  66% { transform: translateY(8px) rotate(-3deg); }
+}
+
+@keyframes petal-fall {
+  0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg) translateX(100px); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* ── Premium 2026 additions ────────────────────────────── */
+.font-script { font-family: var(--font-script); }
+
+/* Animated gradient border */
+@keyframes borderRotate {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.border-gradient-animated {
+  background: linear-gradient(90deg, hsl(38 55% 70%), hsl(346 45% 65%), hsl(38 55% 70%));
+  background-size: 200% 200%;
+  animation: borderRotate 4s ease infinite;
+}
+
+/* Shimmer sweep */
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+.shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%);
+  animation: shimmerSweep 2.8s ease-in-out infinite;
+}
+
+/* Glow pulse */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px -5px currentColor; }
+  50%       { box-shadow: 0 0 40px -5px currentColor; }
+}
+.animate-glow-pulse { animation: glowPulse 2.5s ease-in-out infinite; }
+
+/* Luxe card */
+.card-luxury {
+  @apply relative overflow-hidden rounded-2xl border bg-card/90 backdrop-blur-xl;
+  border-color: hsl(var(--border) / 0.6);
+  box-shadow: 0 1px 0 hsl(0 0% 100% / 0.7) inset, var(--shadow-card);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1), border-color 0.3s;
+}
+.card-luxury:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elegant);
+  border-color: hsl(var(--gold) / 0.45);
+}
+
+/* Bokeh dots floating */
+@keyframes bokehFloat {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+  30%  { opacity: 1; }
+  70%  { opacity: 0.6; }
+  100% { transform: translate(var(--bx, 20px), var(--by, -60px)) scale(0.4); opacity: 0; }
+}
+.bokeh-dot {
+  position: absolute;
+  border-radius: 50%;
+  animation: bokehFloat var(--bd, 6s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@keyframes petalDrift {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  12%, 84% {
+    opacity: var(--petal-opacity, 0.28);
+  }
+  100% {
+    transform: translate3d(var(--petal-drift), 108vh, 0) rotate(220deg);
+    opacity: 0;
+  }
+}
+
+.animate-petal-drift {
+  animation-name: petalDrift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Text reveal mask */
+@keyframes textReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+.animate-text-reveal {
+  animation: textReveal 1s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+
+/* Rotate vinyl */
+@keyframes vinylSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-vinyl { animation: vinylSpin 4s linear infinite; }
+.animate-vinyl-paused { animation-play-state: paused; }
+
+/* Floating hearts */
+@keyframes heartFloat {
+  0%   { transform: translateY(0) rotate(-10deg) scale(1); opacity: 1; }
+  100% { transform: translateY(-120px) rotate(15deg) scale(0.5); opacity: 0; }
+}
+
+/* Gold shimmer text */
+.text-shimmer-gold {
+  background: linear-gradient(120deg, hsl(38 55% 65%) 0%, hsl(48 80% 80%) 40%, hsl(38 47% 55%) 60%, hsl(28 45% 50%) 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Scroll progress bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  z-index: 9999;
+  transform-origin: left;
+  background: linear-gradient(90deg, hsl(346 45% 65%), hsl(38 55% 68%));
+}
+
+/* Section reveal */
+.section-luxury {
+  @apply relative py-24 md:py-36 px-4 overflow-hidden;
+}
+
+/* Input luxury */
+.input-luxury {
+  @apply w-full px-5 py-4 rounded-2xl border bg-white/60 backdrop-blur-sm font-body text-sm;
+  border-color: hsl(var(--border) / 0.7);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.input-luxury:focus {
+  outline: none;
+  border-color: hsl(var(--accent));
+  box-shadow: 0 0 0 3px hsl(var(--accent) / 0.15);
+}
+
+/* Invitation detail polish */
+.wedding-invitation-shell {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wedding-invitation-viewport {
+  container-type: inline-size;
+}
+
+.wedding-invitation-shell section {
+  position: relative;
+  scroll-margin-top: 84px;
+}
+
+.wedding-invitation-shell section::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: max(18px, 8vw);
+  right: max(18px, 8vw);
+  bottom: 0;
+  height: 1px;
+  opacity: 0.38;
+  background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.48), transparent);
+}
+
+.wedding-invitation-shell [class*="shadow-xl"],
+.wedding-invitation-shell [class*="shadow-2xl"] {
+  box-shadow: 0 24px 70px -34px hsl(350 28% 12% / 0.42), 0 1px 0 hsl(0 0% 100% / 0.18) inset;
+}
+
+.wedding-invitation-shell :is(a, button, input, textarea, select) {
+  touch-action: manipulation;
+}
+
+.wedding-invitation-shell :is(input, textarea, select) {
+  font-size: 16px;
+}
+
+.wedding-invitation-shell :is(h1, h2, h3, p, span, a, button) {
+  text-wrap: balance;
+}
+
+.invitation-mobile-frame {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+}
+
+.invitation-mobile-frame::before,
+.invitation-mobile-frame::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.58), transparent);
+}
+
+.invitation-mobile-frame::before {
+  top: 70px;
+}
+
+.invitation-mobile-frame::after {
+  bottom: 18px;
+}
+
+/* Curated invitation layout system */
+.invitation-layout {
+  --layout-gutter: clamp(18px, 5cqw, 72px);
+  position: relative;
+  width: 100%;
+  overflow: clip;
+}
+
+.invitation-section-frame {
+  --section-space: 80px;
+  position: relative;
+  width: 100%;
+  padding-block: clamp(40px, calc(var(--section-space) * 0.72), var(--section-space));
+}
+
+.invitation-section-content {
+  position: relative;
+  min-width: 0;
+  overflow: clip;
+}
+
+.invitation-section-content > section {
+  margin-inline: auto;
+}
+
+.invitation-section-surface-glass {
+  border: 1px solid rgb(255 255 255 / 0.38);
+  background: rgb(255 255 255 / 0.28);
+  box-shadow: 0 24px 64px -40px rgb(41 31 25 / 0.45);
+}
+
+.invitation-section-surface-tint {
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  background: color-mix(in srgb, currentColor 4%, transparent);
+}
+
+.invitation-section-surface-clear {
+  background: transparent;
+  box-shadow: none;
+}
+
+.invitation-section-shadow-sm { box-shadow: 0 10px 28px -24px rgb(41 31 25 / 0.35); }
+.invitation-section-shadow-md { box-shadow: 0 20px 48px -30px rgb(41 31 25 / 0.42); }
+.invitation-section-shadow-lg { box-shadow: 0 34px 80px -42px rgb(41 31 25 / 0.52); }
+.invitation-section-shadow-soft { box-shadow: 18px 18px 48px rgb(41 31 25 / 0.1), -12px -12px 36px rgb(255 255 255 / 0.55); }
+
+.invitation-section-custom-title {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 32px var(--layout-gutter) 8px;
+  text-align: center;
+}
+
+.invitation-section-custom-title span {
+  font: 600 0.68rem/1 var(--font-body);
+  letter-spacing: 0.18em;
+}
+
+.invitation-section-custom-title h2 {
+  font: 500 clamp(1.75rem, 4cqw, 3.25rem)/1.08 var(--font-display);
+}
+
+.invitation-section-custom-title i {
+  display: block;
+  width: 36px;
+  height: 1px;
+  opacity: 0.65;
+}
+
+/* Storybook: airy chapters with alternating editorial margins. */
+.invitation-layout--storybook {
+  padding-block: clamp(24px, 5cqw, 80px);
+}
+
+.invitation-layout--storybook .invitation-section-frame {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+}
+
+.invitation-layout--storybook .invitation-section-frame:nth-child(even) {
+  width: min(94%, 1060px);
+}
+
+.invitation-storybook-mark {
+  position: absolute;
+  top: clamp(28px, 5cqw, 60px);
+  left: max(18px, calc((100% - 1120px) / 2));
+  z-index: 2;
+  font: 600 0.68rem/1 var(--font-body);
+  letter-spacing: 0.2em;
+  opacity: 0.7;
+}
+
+.wedding-template-romantic .invitation-layout--storybook .invitation-section-frame:nth-child(3n + 2),
+.wedding-template-sakura .invitation-layout--storybook .invitation-section-frame:nth-child(3n + 2) {
+  border-radius: 48% 52% 8px 8px / 36px 36px 8px 8px;
+  background: rgb(255 255 255 / 0.35);
+}
+
+.wedding-template-rustic .invitation-layout--storybook .invitation-section-frame {
+  transform: rotate(var(--chapter-tilt, 0deg));
+}
+
+.wedding-template-rustic .invitation-layout--storybook .invitation-section-frame:nth-child(odd) { --chapter-tilt: -0.35deg; }
+.wedding-template-rustic .invitation-layout--storybook .invitation-section-frame:nth-child(even) { --chapter-tilt: 0.35deg; }
+
+/* Editorial: numbered spreads, strong negative space and alternating crop. */
+.invitation-layout--editorial {
+  padding: clamp(24px, 6cqw, 96px) var(--layout-gutter);
+}
+
+.invitation-editorial-masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  max-width: 1280px;
+  margin: 0 auto clamp(48px, 8cqw, 120px);
+  font: 700 0.66rem/1 var(--font-body);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.invitation-editorial-masthead i { height: 1px; opacity: 0.55; }
+
+.invitation-layout--editorial .invitation-section-frame {
+  width: min(92%, 1180px);
+  margin-inline: auto;
+}
+
+.invitation-layout--editorial .invitation-section-frame.is-offset-left { margin-left: 0; margin-right: auto; }
+.invitation-layout--editorial .invitation-section-frame.is-offset-right { margin-left: auto; margin-right: 0; }
+
+.invitation-editorial-index {
+  display: block;
+  margin-bottom: -16px;
+  font: 800 clamp(3.5rem, 11cqw, 10rem)/0.8 var(--font-body);
+  color: currentColor;
+  opacity: 0.055;
+}
+
+/* Destination: a winding route and organic section silhouettes. */
+.invitation-layout--destination {
+  padding: clamp(40px, 8cqw, 120px) var(--layout-gutter);
+}
+
+.invitation-route-line {
+  position: absolute;
+  top: 2%;
+  bottom: 2%;
+  left: 50%;
+  width: min(34cqw, 420px);
+  transform: translateX(-50%);
+  border-left: 1px dashed;
+  border-right: 1px dashed;
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.invitation-layout--destination .invitation-section-frame {
+  width: min(88%, 1100px);
+  margin-inline: auto;
+  padding-inline: clamp(8px, 2cqw, 28px);
+}
+
+.invitation-layout--destination .invitation-section-frame.is-inland { margin-left: 0; }
+.invitation-layout--destination .invitation-section-frame.is-coast { margin-right: 0; }
+
+.invitation-layout--destination .invitation-section-content {
+  border-radius: 40px 8px 40px 8px;
+  background: rgb(255 255 255 / 0.42);
+  box-shadow: 0 28px 72px -48px rgb(77 50 28 / 0.5);
+}
+
+.invitation-destination-pin {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid;
+  border-radius: 50%;
+  background: rgb(255 252 247 / 0.92);
+  box-shadow: 0 8px 24px -14px currentColor;
+}
+
+.invitation-destination-pin svg { width: 17px; height: 17px; }
+.invitation-section-frame.is-inland .invitation-destination-pin { right: -12px; }
+.invitation-section-frame.is-coast .invitation-destination-pin { left: -12px; }
+
+/* Royal: ceremonial frames on a dark stage. */
+.invitation-layout--royal {
+  padding: clamp(48px, 8cqw, 120px) var(--layout-gutter);
+  background: linear-gradient(180deg, rgb(8 7 7 / 0.35), rgb(18 10 13 / 0.72));
+}
+
+.invitation-royal-crest {
+  display: grid;
+  grid-template-columns: minmax(28px, 120px) 28px minmax(28px, 120px);
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: clamp(24px, 5cqw, 72px);
+}
+
+.invitation-royal-crest i { height: 1px; background: currentColor; opacity: 0.55; }
+
+.invitation-layout--royal .invitation-section-frame {
+  width: min(100%, 1120px);
+  margin-inline: auto;
+}
+
+.invitation-layout--royal .invitation-section-content {
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  background: rgb(8 8 8 / 0.34);
+  box-shadow: inset 0 0 0 6px rgb(255 255 255 / 0.015), 0 36px 100px -64px rgb(0 0 0 / 0.9);
+}
+
+.invitation-royal-index {
+  display: block;
+  margin-bottom: 12px;
+  text-align: center;
+  font: 600 0.65rem/1 var(--font-body);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* Minimal: museum-like pacing, thin rules, no decorative cards. */
+.invitation-layout--minimal {
+  width: min(100%, 1380px);
+  margin-inline: auto;
+  padding: clamp(40px, 9cqw, 144px) var(--layout-gutter);
+}
+
+.invitation-layout--minimal .invitation-section-frame {
+  display: grid;
+  grid-template-columns: minmax(34px, 0.15fr) minmax(0, 1fr);
+  gap: clamp(14px, 3cqw, 48px);
+  border-top: 1px solid rgb(25 25 25 / 0.14);
+}
+
+.invitation-layout--minimal .invitation-section-frame.is-narrow .invitation-section-content {
+  width: min(100%, 900px);
+}
+
+.invitation-minimal-index {
+  padding-top: 8px;
+  font: 600 0.68rem/1 var(--font-body);
+  letter-spacing: 0.14em;
+  opacity: 0.45;
+}
+
+/* Dedicated templates share quality constraints, while retaining their own compositions. */
+.wedding-invitation-shell :is(img, video, canvas, svg) { max-inline-size: 100%; }
+.wedding-invitation-shell :is(h1, h2, h3, h4, p, a, button, label, span) { overflow-wrap: anywhere; }
+.wedding-invitation-shell :is(a, button) { touch-action: manipulation; }
+.wedding-invitation-shell :is(input, textarea, select) { min-width: 0; font-size: 16px; }
+.wedding-invitation-shell .grid > * { min-width: 0; }
+
+.wedding-template-romantic section:nth-of-type(even) { box-shadow: inset 0 1px rgb(232 180 184 / 0.16), inset 0 -1px rgb(232 180 184 / 0.12); }
+.wedding-template-luxury section { border-color: rgb(212 175 55 / 0.16); }
+
+.wedding-template-minimalist section,
+.wedding-template-korean section { box-shadow: none !important; }
+.wedding-template-magazine section { border-radius: 0 !important; }
+.wedding-template-vintage section { background-image: radial-gradient(rgb(92 64 51 / 0.035) 0.7px, transparent 0.7px); background-size: 9px 9px; }
+.wedding-template-traditional section { background-blend-mode: soft-light; }
+
+@media (max-width: 640px) {
+  .invitation-mobile-frame { opacity: 1; }
+
+  .wedding-invitation-shell {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .wedding-invitation-shell section { scroll-margin-top: 68px; }
+  .wedding-invitation-shell section > div { max-inline-size: 100%; }
+  .wedding-invitation-shell :is(a, button) { min-height: 44px; }
+
+  .wedding-invitation-shell :is(h1, h2, h3) {
+    max-inline-size: 100%;
+    letter-spacing: 0 !important;
+    text-wrap: balance;
+  }
+
+  .wedding-invitation-shell h1 { line-height: 1 !important; }
+  .wedding-invitation-shell h2 { line-height: 1.08 !important; }
+  .wedding-invitation-shell p { line-height: 1.7; }
+
+  .wedding-invitation-shell [class~="text-9xl"],
+  .wedding-invitation-shell [class~="text-8xl"],
+  .wedding-invitation-shell [class~="text-7xl"] {
+    font-size: clamp(2.65rem, 14vw, 4.5rem) !important;
+  }
+
+  .wedding-invitation-shell [class~="grid-cols-4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wedding-invitation-shell [class~="tracking-widest"] { letter-spacing: 0.12em; }
+
+  .wedding-invitation-shell.is-embedded-preview [class~="fixed"] {
+    position: absolute !important;
+  }
+
+  .invitation-layout--editorial,
+  .invitation-layout--destination,
+  .invitation-layout--royal,
+  .invitation-layout--minimal {
+    padding-inline: 18px;
+  }
+
+  .invitation-layout--editorial .invitation-section-frame,
+  .invitation-layout--destination .invitation-section-frame {
+    width: 100%;
+    margin-inline: 0;
+  }
+
+  .invitation-editorial-masthead { grid-template-columns: 1fr; text-align: center; }
+  .invitation-editorial-masthead i { display: none; }
+  .invitation-editorial-index { margin-bottom: -4px; font-size: 3.5rem; }
+
+  .invitation-route-line { left: 20px; width: 1px; border-right: 0; }
+  .invitation-destination-pin { display: none; }
+  .invitation-layout--destination .invitation-section-content { border-radius: 24px 6px; }
+
+  .invitation-layout--minimal .invitation-section-frame {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .invitation-minimal-index { padding-top: 0; }
+}
+
+@container (max-width: 640px) {
+  .wedding-invitation-shell {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .wedding-invitation-shell section > div { max-inline-size: 100%; }
+  .wedding-invitation-shell :is(a, button) { min-height: 44px; }
+
+  .wedding-invitation-shell :is(h1, h2, h3) {
+    max-inline-size: 100%;
+    letter-spacing: 0 !important;
+    text-wrap: balance;
+  }
+
+  .wedding-invitation-shell h1 { line-height: 1 !important; }
+  .wedding-invitation-shell h2 { line-height: 1.08 !important; }
+
+  .wedding-invitation-shell [class~="text-9xl"],
+  .wedding-invitation-shell [class~="text-8xl"],
+  .wedding-invitation-shell [class~="text-7xl"] {
+    font-size: clamp(2.5rem, 14cqw, 4.4rem) !important;
+  }
+
+  .wedding-invitation-shell [class~="grid-cols-4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wedding-invitation-shell.is-embedded-preview [class~="fixed"] {
+    position: absolute !important;
+  }
+
+  .invitation-layout--editorial,
+  .invitation-layout--destination,
+  .invitation-layout--royal,
+  .invitation-layout--minimal { padding-inline: 18px; }
+
+  .invitation-layout--editorial .invitation-section-frame,
+  .invitation-layout--destination .invitation-section-frame { width: 100%; margin-inline: 0; }
+  .invitation-editorial-masthead { grid-template-columns: 1fr; text-align: center; }
+  .invitation-editorial-masthead i,
+  .invitation-destination-pin { display: none; }
+  .invitation-route-line { left: 20px; width: 1px; border-right: 0; }
+  .invitation-layout--minimal .invitation-section-frame { grid-template-columns: 1fr; gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-template-rustic .invitation-layout--storybook .invitation-section-frame { transform: none; }
+}
+
+/* Floating label */
+.label-float {
+  @apply absolute left-4 top-1/2 -translate-y-1/2 font-body text-sm text-muted-foreground pointer-events-none;
+  transition: all 0.25s cubic-bezier(0.22,1,0.36,1);
+}
+.input-luxury:focus ~ .label-float,
+.input-luxury:not(:placeholder-shown) ~ .label-float {
+  @apply top-2 text-xs;
+  transform: translateY(0);
+  color: hsl(var(--accent));
+}
+
+/* Accessibility: respect prefers-reduced-motion.
+   Disable decorative animation and transitions for users who request reduced motion.
+   Framer Motion handles this through useReducedMotion; this rule covers CSS motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Builder photo filters stay scoped to photography, never text, forms or controls. */
+.wedding-photo-filter-grayscale img:not([alt*="QR"]):not([alt*="qr"]) {
+  filter: grayscale(1) contrast(1.08) !important;
+}
+
+.wedding-photo-filter-sepia img:not([alt*="QR"]):not([alt*="qr"]) {
+  filter: sepia(0.88) saturate(0.9) contrast(1.03) !important;
+}
+
+.wedding-photo-filter-vintage img:not([alt*="QR"]):not([alt*="qr"]) {
+  filter: sepia(0.42) saturate(1.2) contrast(1.08) brightness(0.98) !important;
+}
+
+.wedding-photo-filter-blur img:not([alt*="QR"]):not([alt*="qr"]) {
+  filter: blur(1.2px) saturate(1.04) !important;
+}
+
+/* Card Studio motion stays inside each frame to avoid shifting the invitation layout. */
+@keyframes card-photo-ken-burns {
+  0%, 100% { transform: scale(1.02) translate3d(0, 0, 0); }
+  50% { transform: scale(1.12) translate3d(-1.5%, -1%, 0); }
+}
+
+@keyframes card-photo-pan-left {
+  0%, 100% { transform: scale(1.1) translate3d(2.5%, 0, 0); }
+  50% { transform: scale(1.1) translate3d(-2.5%, 0, 0); }
+}
+
+@keyframes card-photo-pan-right {
+  0%, 100% { transform: scale(1.1) translate3d(-2.5%, 0, 0); }
+  50% { transform: scale(1.1) translate3d(2.5%, 0, 0); }
+}
+
+@keyframes card-photo-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.055); }
+}
+
+@keyframes card-photo-drift {
+  0%, 100% { transform: scale(1.06) translate3d(-1%, 1%, 0); }
+  50% { transform: scale(1.08) translate3d(1.5%, -1%, 0); }
+}
+
+@keyframes card-photo-tilt {
+  0%, 100% { transform: scale(1.04) rotate(-0.8deg); }
+  50% { transform: scale(1.06) rotate(0.8deg); }
+}
+
+@keyframes card-photo-depth-float {
+  0%, 100% { transform: perspective(900px) translate3d(0, 0, 0) rotateX(0deg) rotateY(-1.2deg) scale(1.035); }
+  50% { transform: perspective(900px) translate3d(0, -5px, 22px) rotateX(1.2deg) rotateY(1.2deg) scale(1.055); }
+}
+
+@keyframes card-photo-perspective-sway {
+  0%, 100% { transform: perspective(850px) rotateX(-1deg) rotateY(-2deg) scale(1.06); }
+  50% { transform: perspective(850px) rotateX(1deg) rotateY(2deg) scale(1.06); }
+}
+
+@keyframes card-photo-reveal {
+  from { clip-path: inset(0 100% 0 0); transform: scale(1.08); filter: blur(5px); }
+  to { clip-path: inset(0 0 0 0); transform: scale(1); filter: blur(0); }
+}
+
+.card-photo-motion-ken-burns { animation: card-photo-ken-burns 12s ease-in-out infinite; }
+.card-photo-motion-pan-left { animation: card-photo-pan-left 11s ease-in-out infinite; }
+.card-photo-motion-pan-right { animation: card-photo-pan-right 11s ease-in-out infinite; }
+.card-photo-motion-breathe { animation: card-photo-breathe 7s ease-in-out infinite; }
+.card-photo-motion-drift { animation: card-photo-drift 9s ease-in-out infinite; }
+.card-photo-motion-tilt { animation: card-photo-tilt 8s ease-in-out infinite; }
+.card-photo-motion-depth-float { animation: card-photo-depth-float 12s ease-in-out infinite; backface-visibility: hidden; will-change: transform; }
+.card-photo-motion-perspective-sway { animation: card-photo-perspective-sway 14s ease-in-out infinite; backface-visibility: hidden; will-change: transform; }
+.card-photo-motion-reveal { animation: card-photo-reveal 4s cubic-bezier(.2,.75,.2,1) both; }
+
+@keyframes card-music-vinyl-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes card-music-note-rise {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) scale(.7) rotate(-8deg); }
+  18% { opacity: 1; }
+  72% { opacity: .9; }
+  100% { opacity: 0; transform: translate3d(18px, -92px, 0) scale(1) rotate(24deg); }
+}
+
+.card-music-vinyl-playing { animation: card-music-vinyl-spin 3.4s linear infinite; }
+.card-music-note { animation: card-music-note-rise 3.2s ease-out both; }
+
+.card-photo-overlay-soft-glow {
+  background: radial-gradient(circle at 28% 18%, rgba(255,255,255,.38), transparent 45%);
+  mix-blend-mode: screen;
+}
+
+.card-photo-overlay-gold-wash {
+  background: linear-gradient(145deg, rgba(229,197,128,.2), transparent 45%, rgba(92,52,22,.1));
+  mix-blend-mode: soft-light;
+}
+
+.card-photo-overlay-film {
+  opacity: .2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.card-photo-overlay-glass-sheen {
+  width: 45%;
+  transform: skewX(-18deg) translateX(-180%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
+  animation: card-photo-sheen 8s ease-in-out infinite;
+}
+
+@keyframes card-photo-sheen {
+  0%, 68% { transform: skewX(-18deg) translateX(-180%); }
+  90%, 100% { transform: skewX(-18deg) translateX(360%); }
+}
+
+/* Signature templates own their chrome and form surfaces instead of inheriting the default wedding UI. */
+.wedding-template-cyberpunk_luxe :is(h1, h2, h3, h4) {
+  font-family: var(--invitation-body-font) !important;
+  font-style: normal !important;
+}
+
+.signature-rsvp-neo,
+.signature-wishes-neo {
+  color-scheme: dark;
+}
+
+.signature-rsvp-neo :is(.text-foreground, .text-muted-foreground),
+.signature-wishes-neo :is(.text-foreground, .text-muted-foreground) {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.signature-rsvp-neo [data-rsvp-form="neon-terminal"] {
+  background: #07090c !important;
+  border: 1px solid rgb(101 231 255 / 0.55) !important;
+  border-radius: 0 !important;
+  box-shadow: 12px 12px 0 rgb(101 231 255 / 0.14) !important;
+}
+
+.signature-rsvp-neo :is(input, textarea, select),
+.signature-wishes-neo :is(input, textarea, select) {
+  border-radius: 0 !important;
+  border-color: rgb(101 231 255 / 0.32) !important;
+  background: #0a0d11 !important;
+  color: white !important;
+}
+
+.signature-rsvp-neo button[type="submit"],
+.signature-wishes-neo button[type="submit"] {
+  border-radius: 0 !important;
+  background: #65e7ff !important;
+  color: #050608 !important;
+  box-shadow: none !important;
+}
+
+.signature-rsvp-neo [data-rsvp-ornament] {
+  display: none;
+}
+
+.signature-rsvp-neo [data-rsvp-attendance] {
+  gap: 0;
+  padding: 0;
+  border: 1px solid rgb(101 231 255 / 55%);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.signature-rsvp-neo [data-rsvp-attendance-option] {
+  min-height: 48px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.signature-rsvp-neo [data-rsvp-attendance-option] + [data-rsvp-attendance-option] {
+  border-left: 1px solid rgb(101 231 255 / 35%);
+}
+
+.signature-wishes-neo [data-wishes-layout="hologram-feed"] > div,
+.signature-wishes-neo form {
+  border-radius: 0 !important;
+}
+
+.signature-rsvp-aurora [data-rsvp-form="aurora-cabin"] {
+  background: rgb(248 251 249 / 0.94) !important;
+  border: 1px solid rgb(44 142 114 / 0.28) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+.signature-rsvp-aurora :is(input, textarea, select),
+.signature-wishes-aurora :is(input, textarea, select) {
+  border-radius: 4px !important;
+}
+
+.signature-rsvp-aurora button[type="submit"],
+.signature-wishes-aurora button[type="submit"] {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+.signature-rsvp-aurora [data-rsvp-ornament] > div,
+.signature-rsvp-aurora [data-rsvp-attendance],
+.signature-rsvp-aurora [data-rsvp-attendance-option] {
+  border-radius: 4px;
+}
+
+.signature-rsvp-aurora [data-rsvp-attendance] {
+  background: rgb(16 37 31 / 5%);
+  box-shadow: none;
+}
+
+.signature-wishes-aurora [data-wishes-layout="constellation-notes"] > div,
+.signature-wishes-aurora form {
+  border-radius: 4px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FINE ART & LUXURY WEDDING DESIGN SYSTEM UTILITIES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Gold foil shimmer animation */
+@keyframes goldFoilShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gold-foil-text {
+  background: linear-gradient(
+    110deg,
+    #b38728 0%,
+    #fbf5b7 25%,
+    #daac3a 45%,
+    #aa771c 65%,
+    #fcf6ba 80%,
+    #8e6015 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldFoilShimmer 6s ease-in-out infinite;
+}
+
+.gold-foil-border {
+  border: 1px solid transparent;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), 
+                    linear-gradient(110deg, #d4af37, #fdf6cc, #b8860b, #ffe57f, #996515);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Equalizer sound wave animation */
+@keyframes eqBar1 {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+@keyframes eqBar2 {
+  0%, 100% { height: 14px; }
+  50% { height: 6px; }
+}
+@keyframes eqBar3 {
+  0%, 100% { height: 8px; }
+  50% { height: 18px; }
+}
+@keyframes eqBar4 {
+  0%, 100% { height: 16px; }
+  50% { height: 5px; }
+}
+
+.animate-eq-1 { animation: eqBar1 0.8s ease-in-out infinite; }
+.animate-eq-2 { animation: eqBar2 0.7s ease-in-out 0.15s infinite; }
+.animate-eq-3 { animation: eqBar3 0.9s ease-in-out 0.3s infinite; }
+.animate-eq-4 { animation: eqBar4 0.6s ease-in-out 0.1s infinite; }
+
+/* Luxury French Arch Frame */
+.luxury-french-arch {
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+}
+
+/* Stardust & Sparkle Glow */
+@keyframes sparkleGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+    filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.4));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.9));
+  }
+}
+
+.animate-sparkle-glow {
+  animation: sparkleGlow 3s ease-in-out infinite;
+}
+
+/* Fine Art Glassmorphism card */
+.fineart-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(212, 175, 55, 0.08);
+}
+
+.dark .fineart-card {
+  background: rgba(18, 18, 20, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.1);
+}
+
