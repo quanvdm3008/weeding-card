@@ -38,4 +38,24 @@ describe("apiRequest security headers", () => {
     const headers = new Headers(fetchMock.mock.calls[0][1]?.headers);
     expect(headers.get("X-XSRF-TOKEN")).toBe("csrf token");
   });
+
+  it("uses the CSRF token returned by the API for cross-origin requests", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(new Response(JSON.stringify({ success: true, code: 200, message: "OK", data: "api-csrf-token" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { ok: true } }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    await apiRequest("/api/auth/csrf");
+    await apiRequest("/api/auth/login", { method: "POST", body: "{}" });
+
+    const headers = new Headers(fetchMock.mock.calls[1][1]?.headers);
+    expect(headers.get("X-XSRF-TOKEN")).toBe("api-csrf-token");
+  });
 });

@@ -34,6 +34,7 @@ const USE_MOCK_API = import.meta.env.DEV && import.meta.env.VITE_USE_MOCK_API ==
 
 let accessToken: string | null = null;
 let refreshToken: string | null = null;
+let csrfTokenFromApi: string | null = null;
 
 export function setAuthToken(token: string | null) {
   accessToken = token;
@@ -52,6 +53,7 @@ export function getRefreshToken(): string | null {
 }
 
 function getCsrfToken(): string | null {
+  if (csrfTokenFromApi) return csrfTokenFromApi;
   if (typeof document === "undefined") return null;
   const cookie = document.cookie
     .split(";")
@@ -200,7 +202,11 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}, isRetr
     throw new ApiError(message, response.status, errors);
   }
 
-  return unwrapApiBody<T>(body);
+  const data = unwrapApiBody<T>(body);
+  if (path === "/api/auth/csrf" && typeof data === "string") {
+    csrfTokenFromApi = data;
+  }
+  return data;
 }
 
 export function getApiErrorMessage(error: unknown, fallback = "An error occurred"): string {
