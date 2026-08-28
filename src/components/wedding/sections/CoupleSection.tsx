@@ -29,7 +29,20 @@ const PersonAvatar = ({ name, img, accentColor, rotate, theme, desc, animate }: 
           animate={animate ? { rotate: [rotate, -rotate, rotate] } : {}}
           transition={{ duration: 8, repeat: Infinity }}
         />
-        <img src={img} alt={name} loading="lazy" className={`w-full h-full object-cover shadow-xl ${shapeClass}`} style={{ ...shapeStyle, filter: imgFilter }} />
+        <img
+          src={img || couple1}
+          alt={name}
+          loading="lazy"
+          className={`w-full h-full object-cover object-top shadow-xl ${shapeClass}`}
+          style={{ ...shapeStyle, filter: imgFilter }}
+          onError={(e) => {
+            const el = e.currentTarget;
+            if (el.dataset.fallbackApplied !== "true") {
+              el.dataset.fallbackApplied = "true";
+              el.src = couple1;
+            }
+          }}
+        />
         {sv === "gallery" && (
           <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-10 h-4 rotate-3 rounded-sm opacity-80 z-10" style={{ backgroundColor: accentColor }} />
         )}

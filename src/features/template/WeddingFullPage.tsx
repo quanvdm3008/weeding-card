@@ -93,7 +93,7 @@ const WeddingFooter = ({ groomName, brideName, accentColor, decorEmoji, date, th
     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative z-10">
       <div className="w-28 h-28 mx-auto mb-6">
         <PhotoFrame variant={theme.styleVariant} accentColor={accentColor} className="rounded-2xl w-full h-full">
-          <img src={WEDDING_SEED_DATA.galleryImageUrls[2]} alt="" className="w-full h-full object-cover" />
+          <SparklingImage accentColor={accentColor} src={WEDDING_SEED_DATA.galleryImageUrls[2]} alt="" className="w-full h-full object-cover" />
         </PhotoFrame>
       </div>
       <motion.div
@@ -133,7 +133,7 @@ const MessageSection = ({ message, groomName, brideName, accentColor, theme }: {
     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={`max-w-2xl mx-auto text-center bg-card/70 backdrop-blur-sm ${theme.cardRadius} p-10 @md:p-14 border border-border shadow-lg`}>
       <div className="w-24 h-24 mx-auto mb-6">
         <PhotoFrame variant={theme.styleVariant} accentColor={accentColor} className="rounded-2xl w-full h-full">
-          <img src={WEDDING_SEED_DATA.galleryImageUrls[3]} alt="" className="w-full h-full object-cover" />
+          <SparklingImage accentColor={accentColor} src={WEDDING_SEED_DATA.galleryImageUrls[3]} alt="" className="w-full h-full object-cover" />
         </PhotoFrame>
       </div>
       <span className="text-xs tracking-[0.4em] uppercase font-body" style={{ color: accentColor }}>Opening statement</span>

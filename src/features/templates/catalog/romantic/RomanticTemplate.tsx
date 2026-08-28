@@ -92,12 +92,13 @@ export const RomanticTemplate: React.FC<TemplateProps> = ({
             <div className="w-full h-full rounded-t-[170px] overflow-hidden relative shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] bg-[#FAF8F5]">
               <SparklingImage
                 accentColor={accentColor}
-                src={coverImageUrl}
+                src={coverImageUrl || WEDDING_SEED_DATA.coverImageUrl}
+                fallbackSrc={WEDDING_SEED_DATA.coverImageUrl}
                 alt="Couple"
                 loading="eager"
                 fetchPriority="high"
                 tilt3d={false}
-                className="w-full h-full object-cover scale-105 transition-transform duration-1000 group-hover:scale-110"
+                className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>
@@ -178,12 +179,13 @@ export const RomanticTemplate: React.FC<TemplateProps> = ({
                 className={`flex flex-col ${idx % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-12 sm:gap-20`}
               >
                 <div className="w-full md:w-1/2">
-                  <div className="aspect-[4/5] overflow-hidden shadow-2xl relative">
+                  <div className="aspect-[4/5] overflow-hidden shadow-2xl relative rounded-2xl">
                     <SparklingImage
                       accentColor={accentColor}
-                      src={story.img}
+                      src={story.img || WEDDING_SEED_DATA.galleryImageUrls[idx % WEDDING_SEED_DATA.galleryImageUrls.length]}
+                      fallbackSrc={WEDDING_SEED_DATA.galleryImageUrls[idx % WEDDING_SEED_DATA.galleryImageUrls.length]}
                       alt={story.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+                      className="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/[0.03]" />
                   </div>
@@ -217,12 +219,13 @@ export const RomanticTemplate: React.FC<TemplateProps> = ({
               transition={{ duration: 1.5 }}
               className="flex flex-col items-center"
             >
-              <div className="w-full max-w-[300px] aspect-[3/4] mb-8 overflow-hidden bg-gray-100 shadow-xl relative">
+              <div className="w-full max-w-[300px] aspect-[3/4] mb-8 overflow-hidden rounded-2xl bg-gray-100 shadow-xl relative">
                 <SparklingImage
                   accentColor={accentColor}
-                  src={coverImageUrl}
+                  src={coverImageUrl || WEDDING_SEED_DATA.coverImageUrl}
+                  fallbackSrc={WEDDING_SEED_DATA.coverImageUrl}
                   alt="Chú rể"
-                  className="w-full h-full object-cover grayscale-[20%]"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <span className="font-sans text-[9px] uppercase tracking-[0.4em] block mb-3" style={{ color: accentColor }}>Chú Rể</span>
@@ -236,12 +239,13 @@ export const RomanticTemplate: React.FC<TemplateProps> = ({
               transition={{ duration: 1.5, delay: 0.2 }}
               className="flex flex-col items-center md:mt-24"
             >
-              <div className="w-full max-w-[300px] aspect-[3/4] mb-8 overflow-hidden bg-gray-100 shadow-xl relative">
+              <div className="w-full max-w-[300px] aspect-[3/4] mb-8 overflow-hidden rounded-2xl bg-gray-100 shadow-xl relative">
                 <SparklingImage
                   accentColor={accentColor}
-                  src={displayImages[0] || coverImageUrl}
+                  src={displayImages[0] || WEDDING_SEED_DATA.galleryImageUrls[0]}
+                  fallbackSrc={WEDDING_SEED_DATA.galleryImageUrls[0]}
                   alt="Cô dâu"
-                  className="w-full h-full object-cover grayscale-[20%]"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <span className="font-sans text-[9px] uppercase tracking-[0.4em] block mb-3" style={{ color: accentColor }}>Cô Dâu</span>

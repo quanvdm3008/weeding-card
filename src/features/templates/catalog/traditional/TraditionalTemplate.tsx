@@ -63,13 +63,13 @@ export const TraditionalTemplate = ({
 
         <div className="flex flex-row justify-center items-center gap-2 md:gap-4 mb-16 w-full max-w-4xl mx-auto h-[40vh] min-h-[300px]">
           <div className="w-[30%] h-[80%] relative border-[1.5px] border-white p-1">
-            <SparklingImage accentColor={accentColor} src={displayImages[0] || coverImageUrl} alt="Couple 1" className="w-full h-full object-cover" />
+            <SparklingImage accentColor={accentColor} src={displayImages[0] || WEDDING_SEED_DATA.galleryImageUrls[0]} fallbackSrc={WEDDING_SEED_DATA.galleryImageUrls[0]} alt="Couple 1" className="w-full h-full object-cover" />
           </div>
           <div className="w-[40%] h-full relative border-[1.5px] border-white p-1 z-10 shadow-2xl">
-            <SparklingImage accentColor={accentColor} src={coverImageUrl} alt="Couple 2" className="w-full h-full object-cover" />
+            <SparklingImage accentColor={accentColor} src={coverImageUrl || WEDDING_SEED_DATA.coverImageUrl} fallbackSrc={WEDDING_SEED_DATA.coverImageUrl} alt="Couple 2" className="w-full h-full object-cover" />
           </div>
           <div className="w-[30%] h-[80%] relative border-[1.5px] border-white p-1">
-            <SparklingImage accentColor={accentColor} src={displayImages[1] || coverImageUrl} alt="Couple 3" className="w-full h-full object-cover" />
+            <SparklingImage accentColor={accentColor} src={displayImages[1] || WEDDING_SEED_DATA.galleryImageUrls[1]} fallbackSrc={WEDDING_SEED_DATA.galleryImageUrls[1]} alt="Couple 3" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -172,7 +172,7 @@ export const TraditionalTemplate = ({
               <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col md:flex-row items-center gap-8">
                 <div className={`w-full md:w-1/2 ${idx % 2 !== 0 ? 'md:order-2' : ''}`}>
                   <div className="aspect-[4/3] border-[1.5px] border-white p-1 relative">
-                    <SparklingImage accentColor={accentColor} src={story.img} alt={story.title} className="w-full h-full object-cover" />
+                    <SparklingImage accentColor={accentColor} src={story.img || WEDDING_SEED_DATA.galleryImageUrls[idx % WEDDING_SEED_DATA.galleryImageUrls.length]} fallbackSrc={WEDDING_SEED_DATA.galleryImageUrls[idx % WEDDING_SEED_DATA.galleryImageUrls.length]} alt={story.title} className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="w-full md:w-1/2 text-center md:text-left">

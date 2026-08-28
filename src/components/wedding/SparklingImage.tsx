@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { IMAGE_REVEAL_DURATION_SECONDS } from "@/lib/animationTiming";
+import defaultCouple from "@/assets/couple-1.jpg";
+import defaultHero from "@/assets/hero-wedding.jpg";
 
 interface SparklingImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   accentColor?: string;
@@ -33,10 +35,25 @@ export const SparklingImage: React.FC<SparklingImageProps> = ({
   touchSparkles = true,
   colorShift = false,
   fetchPriority,
+  src,
   onError,
   ...props
 }) => {
   const isPriorityImage = props.loading === "eager" || fetchPriority === "high";
+  const defaultFallback = fallbackSrc || defaultCouple;
+  const effectiveSrc = typeof src === "string" && src.trim().length > 0 ? src : defaultFallback;
+  const [currentSrc, setCurrentSrc] = useState<string>(effectiveSrc);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Sync state if prop changes to a valid string
+  React.useEffect(() => {
+    if (typeof src === "string" && src.trim().length > 0) {
+      setCurrentSrc(src);
+    } else {
+      setCurrentSrc(defaultFallback);
+    }
+  }, [src, defaultFallback]);
+
   // 3D Motion Tilt Values
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
@@ -88,21 +105,27 @@ export const SparklingImage: React.FC<SparklingImageProps> = ({
         />
       )}
 
-      {/* Main Image with Mono-to-Color hover option */}
+      {/* Main Image with smooth fade-in and automatic fallback */}
       <motion.img
-        initial={isPriorityImage ? false : { opacity: 0, scale: 1.03, filter: "blur(6px)" }}
-        whileInView={isPriorityImage ? undefined : { opacity: 1, scale: 1, filter: "blur(0px)" }}
-        viewport={{ once: true, amount: 0.1 }}
+        src={currentSrc}
+        initial={isPriorityImage ? false : { opacity: 0.7, scale: 1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        onLoad={() => setIsLoaded(true)}
         whileHover={{ scale: 1.04 }}
         transition={{ duration: IMAGE_REVEAL_DURATION_SECONDS, ease: [0.22, 1, 0.36, 1] }}
-        className={`relative z-10 h-full w-full transition duration-700 ${
+        className={`relative z-10 h-full w-full object-cover transition duration-700 ${
           colorShift ? "filter grayscale group-hover:grayscale-0 group-hover:contrast-105" : "group-hover:saturate-[1.08]"
         } ${className}`}
         onError={(event) => {
           const image = event.currentTarget;
-          if (fallbackSrc && image.dataset.fallbackApplied !== "true") {
+          if (image.dataset.fallbackApplied !== "true") {
             image.dataset.fallbackApplied = "true";
-            image.src = fallbackSrc;
+            image.src = defaultFallback;
+            setCurrentSrc(defaultFallback);
+          } else if (image.src !== defaultHero) {
+            // Secondary fallback if primary fallback fails
+            image.src = defaultHero;
+            setCurrentSrc(defaultHero);
           }
           onError?.(event);
         }}

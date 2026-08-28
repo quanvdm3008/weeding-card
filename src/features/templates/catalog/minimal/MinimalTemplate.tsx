@@ -99,20 +99,20 @@ export const MinimalTemplate = ({
  <h2 className="text-5xl md:text-7xl font-light tracking-tighter">Cô dâu & Chú rể</h2>
  </motion.div>
  <div className="grid md:grid-cols-2 gap-16 md:gap-32">
- <div>
- <div className="aspect-[3/4] w-full mb-8 overflow-hidden">
- <SparklingImage accentColor={accentColor} src={coverImageUrl || WEDDING_SEED_DATA.coverImageUrl} alt="Groom" className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700" />
- </div>
- <span className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-2 block text-center">Chú rể</span>
- <h3 className="text-4xl font-light tracking-tight text-center">{groomName || WEDDING_SEED_DATA.groomName}</h3>
- </div>
- <div className="md:mt-32">
- <div className="aspect-[3/4] w-full mb-8 overflow-hidden">
- <SparklingImage accentColor={accentColor} src={displayImages[0] || (coverImageUrl || WEDDING_SEED_DATA.coverImageUrl)} alt="Bride" className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700" />
- </div>
- <span className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-2 block text-center">Cô dâu</span>
- <h3 className="text-4xl font-light tracking-tight text-center">{brideName || WEDDING_SEED_DATA.brideName}</h3>
- </div>
+  <div>
+  <div className="aspect-[3/4] w-full mb-8 overflow-hidden rounded-2xl">
+  <SparklingImage accentColor={accentColor} src={coverImageUrl || WEDDING_SEED_DATA.coverImageUrl} fallbackSrc={WEDDING_SEED_DATA.coverImageUrl} alt="Groom" className="w-full h-full object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-700" />
+  </div>
+  <span className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-2 block text-center">Chú rể</span>
+  <h3 className="text-4xl font-light tracking-tight text-center">{groomName || WEDDING_SEED_DATA.groomName}</h3>
+  </div>
+  <div className="md:mt-32">
+  <div className="aspect-[3/4] w-full mb-8 overflow-hidden rounded-2xl">
+  <SparklingImage accentColor={accentColor} src={displayImages[0] || WEDDING_SEED_DATA.galleryImageUrls[0]} fallbackSrc={WEDDING_SEED_DATA.galleryImageUrls[0]} alt="Bride" className="w-full h-full object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-700" />
+  </div>
+  <span className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-2 block text-center">Cô dâu</span>
+  <h3 className="text-4xl font-light tracking-tight text-center">{brideName || WEDDING_SEED_DATA.brideName}</h3>
+  </div>
  </div>
  </section>
 

@@ -49,7 +49,7 @@ export const KoreanTemplate = ({
  <section id="hero" className="relative min-h-[90svh] flex flex-col items-center justify-center py-20 px-6 text-center">
  <motion.div initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, type: "spring", bounce: 0.4 }} className="flex flex-col items-center max-w-2xl w-full">
  <div className="w-full aspect-[4/5] @md:aspect-[16/9] mb-12 rounded-3xl overflow-hidden bg-[#EFEAE1] shadow-sm">
- <SparklingImage accentColor={accentColor} src={coverImageUrl} alt="Couple" className="w-full h-full object-cover filter brightness-[1.05] contrast-95 saturate-[0.8]" />
+ <SparklingImage accentColor={accentColor} src={coverImageUrl || WEDDING_SEED_DATA.coverImageUrl} fallbackSrc={WEDDING_SEED_DATA.coverImageUrl} alt="Couple" className="w-full h-full object-cover filter brightness-[1.05] contrast-95 saturate-[0.8]" />
  </div>
  <h1 className="text-4xl @md:text-5xl font-light mb-6 tracking-widest">{groomName} <span className="text-[#AEC6CF] mx-2">|</span> {brideName}</h1>
  <p className="text-sm tracking-[0.2em] text-[#8C837C] uppercase font-medium">{date.split("-").reverse().join(" . ")}</p>
@@ -88,7 +88,7 @@ export const KoreanTemplate = ({
  >
  <div className="w-full @md:w-1/2">
  <div className="w-full aspect-[4/5] bg-[#EFEAE1] rounded-3xl overflow-hidden shadow-sm">
- <SparklingImage accentColor={accentColor} src={story.img} alt={story.title} className="w-full h-full object-cover filter brightness-[1.05] contrast-95 saturate-[0.8]" />
+ <SparklingImage accentColor={accentColor} src={story.img || WEDDING_SEED_DATA.galleryImageUrls[idx % WEDDING_SEED_DATA.galleryImageUrls.length]} fallbackSrc={WEDDING_SEED_DATA.galleryImageUrls[idx % WEDDING_SEED_DATA.galleryImageUrls.length]} alt={story.title} className="w-full h-full object-cover filter brightness-[1.05] contrast-95 saturate-[0.8]" />
  </div>
  </div>
  <div className={`w-full @md:w-1/2 text-center @md:text-left ${idx % 2 === 1 ? '@md:text-right' : ''}`}>
@@ -111,14 +111,14 @@ export const KoreanTemplate = ({
  <div className="grid @md:grid-cols-2 gap-12 @md:gap-20">
  <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ type: "spring", bounce: 0.4 }} className="flex flex-col items-center">
  <div className="w-full max-w-[280px] aspect-[3/4] rounded-3xl overflow-hidden mb-8 bg-[#EFEAE1] shadow-md border-4 border-white">
- <SparklingImage accentColor={accentColor} src={coverImageUrl} alt="Groom" className="w-full h-full object-cover filter brightness-[1.05] contrast-95 saturate-[0.8]" />
+ <SparklingImage accentColor={accentColor} src={coverImageUrl || WEDDING_SEED_DATA.coverImageUrl} fallbackSrc={WEDDING_SEED_DATA.coverImageUrl} alt="Groom" className="w-full h-full object-cover object-top filter brightness-[1.05] contrast-95 saturate-[0.8]" />
  </div>
  <p className="text-[10px] tracking-[0.3em] uppercase text-[#8C837C] mb-2">Chú Rể</p>
  <h3 className="text-2xl font-light tracking-widest">{groomName}</h3>
  </motion.div>
  <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ type: "spring", bounce: 0.4, delay: 0.2 }} className="flex flex-col items-center @md:mt-24">
  <div className="w-full max-w-[280px] aspect-[3/4] rounded-3xl overflow-hidden mb-8 bg-[#EFEAE1] shadow-md border-4 border-white">
- <SparklingImage accentColor={accentColor} src={displayImages[0] || coverImageUrl} alt="bride" className="w-full h-full object-cover filter brightness-[1.05] contrast-95 saturate-[0.8]" />
+ <SparklingImage accentColor={accentColor} src={displayImages[0] || WEDDING_SEED_DATA.galleryImageUrls[0]} fallbackSrc={WEDDING_SEED_DATA.galleryImageUrls[0]} alt="bride" className="w-full h-full object-cover object-top filter brightness-[1.05] contrast-95 saturate-[0.8]" />
  </div>
  <p className="text-[10px] tracking-[0.3em] uppercase text-[#8C837C] mb-2">Cô Dâu</p>
  <h3 className="text-2xl font-light tracking-widest">{brideName}</h3>
