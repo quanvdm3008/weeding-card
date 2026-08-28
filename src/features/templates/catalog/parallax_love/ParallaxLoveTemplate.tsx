@@ -303,7 +303,7 @@ export const ParallaxLoveTemplate = ({
         </div>
       </section>
 
-      {schedule?.length ? <div className="relative z-10 bg-[#FBF9F4]"><TimelineSection schedule={schedule} accentColor={accentColor} theme={theme} /></div> : null}
+      {schedule?.length ? <div className="relative z-10 bg-[#FBF9F4] text-[#2C2724]"><TimelineSection schedule={schedule} accentColor={accentColor} theme={theme} /></div> : null}
 
       {(extraInfoTitle || extraInfoContent) && (
         <section className="relative z-10 bg-[#F1EBDD] px-5 py-20"><div className="mx-auto max-w-2xl rounded-[2rem] border border-[#D8C9B4] bg-[#FFFDF8] p-8 text-center shadow-sm @md:p-12"><Heart className="mx-auto h-5 w-5" style={{ color: accentColor }} /><h2 className="mt-5 font-serif text-3xl">{extraInfoTitle || "Thông tin thêm"}</h2><p className="mt-4 whitespace-pre-line font-sans text-sm leading-7 text-[#6D665D]">{extraInfoContent}</p></div></section>

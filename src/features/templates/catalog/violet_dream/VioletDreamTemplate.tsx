@@ -243,7 +243,11 @@ export const VioletDreamTemplate = ({
 
       <section id="events" className="relative z-10 overflow-hidden bg-[#F0E5F8] px-5 py-24 @md:py-32"><div className="mx-auto max-w-5xl rounded-[2.4rem] bg-[#2A123F] p-7 text-white shadow-[0_30px_80px_rgba(49,20,76,.28)] @md:p-14"><div className="grid gap-10 @md:grid-cols-[.8fr_1.2fr] @md:items-end"><div><p className="text-[10px] font-semibold uppercase tracking-[.28em] text-[#DEC7FF]">Nơi hẹn hò</p><h2 className="mt-5 font-serif text-5xl leading-none @md:text-6xl">{venue}</h2><p className="mt-6 font-sans text-sm leading-7 text-white/70">{address}</p></div><div><p className="font-serif text-3xl text-[#E5D2FF]">{formattedDate}</p><p className="mt-2 text-sm text-white/65">Đón khách lúc {time}</p><CalendarAndMapButtons title={`${finalGroomName} & ${finalBrideName}`} dateStr={date} timeStr={time} venue={venue} address={address} accentColor={accentColor} className="mt-7 justify-start [&_a]:border-white/25 [&_a]:bg-white/10 [&_a]:text-white [&_button]:border-white/25 [&_button]:bg-white/10 [&_button]:text-white" /></div></div></div></section>
 
-      {schedule?.length ? <div className="relative z-10 bg-[#FCFAFE]"><TimelineSection schedule={schedule} accentColor={accentColor} theme={theme} /></div> : null}
+      {schedule?.length ? (
+        <div id="schedule" className="relative z-10 bg-[#FCFAFE] text-[#2B173D]">
+          <TimelineSection schedule={schedule} accentColor={accentColor} theme={theme} />
+        </div>
+      ) : null}
       {(extraInfoTitle || extraInfoContent) && <section id="details" className="relative z-10 px-5 py-20"><div className="mx-auto max-w-2xl rounded-[2rem] border border-white bg-white/70 p-8 text-center shadow-sm @md:p-12"><MoonStar className="mx-auto h-5 w-5 text-[#8A65AF]" /><h2 className="mt-5 font-serif text-3xl">{extraInfoTitle || "Điều nhỏ xinh"}</h2><p className="mt-4 whitespace-pre-line font-sans text-sm leading-7 text-[#6D597C]">{extraInfoContent}</p></div></section>}
 
       <div className="relative z-10 bg-[#241136]">

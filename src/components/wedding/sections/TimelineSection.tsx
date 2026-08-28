@@ -5,14 +5,14 @@ import type { WeddingTheme } from "@/data/themes";
 type TimelineVariantProps = { schedule: ScheduleEvent[]; accentColor: string };
 
 const TimelineCinematic = ({ schedule, accentColor }: TimelineVariantProps) => (
-  <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
+  <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-inherit">
     <div className="text-center mb-16 relative">
-      <p className="font-sans text-[10px] uppercase tracking-[0.4em] font-bold mb-2 opacity-50" style={{ color: accentColor }}>Timeline</p>
-      <h2 className="font-serif text-5xl font-light">Party Schedule</h2>
+      <p className="font-sans text-[10px] uppercase tracking-[0.4em] font-bold mb-2 opacity-70" style={{ color: accentColor }}>Timeline</p>
+      <h2 className="font-serif text-4xl sm:text-5xl font-light text-inherit">Lịch Trình Hôn Lễ</h2>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-current opacity-5 blur-[60px] rounded-full" />
     </div>
     <div className="w-full relative">
-      <div className="absolute left-8 sm:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-current to-transparent opacity-10" />
+      <div className="absolute left-8 sm:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-current to-transparent opacity-15" />
       <div className="space-y-24">
         {schedule.map((event: ScheduleEvent, index: number) => {
           const isEven = index % 2 === 0;
@@ -26,8 +26,8 @@ const TimelineCinematic = ({ schedule, accentColor }: TimelineVariantProps) => (
               </div>
               
               <div className={`pl-20 sm:pl-0 mt-4 sm:mt-0 sm:w-1/2 flex flex-col ${isEven ? "sm:items-start sm:pl-16 sm:order-2" : "sm:items-end sm:pr-16 sm:text-right"}`}>
-                <h3 className="font-serif text-2xl sm:text-3xl mb-3 tracking-wide">{event.title}</h3>
-                {event.description && <p className="font-sans text-sm opacity-60 leading-relaxed max-w-sm">{event.description}</p>}
+                <h3 className="font-serif text-2xl sm:text-3xl mb-3 tracking-wide text-inherit">{event.title}</h3>
+                {event.description && <p className="font-sans text-sm opacity-75 leading-relaxed max-w-sm text-inherit">{event.description}</p>}
               </div>
             </motion.div>
           );
@@ -67,7 +67,7 @@ const TimelineRustic = ({ schedule, accentColor }: TimelineVariantProps) => (
               
               <div className={`pl-20 sm:pl-0 mt-2 sm:mt-0 sm:w-1/2 flex flex-col ${isEven ? "sm:items-start sm:pl-12 sm:order-2" : "sm:items-end sm:pr-12 sm:text-right"}`}>
                 <h3 className="font-serif text-xl sm:text-2xl mb-2 text-[#5c4a3d]">{event.title}</h3>
-                {event.description && <p className="font-sans text-xs opacity-70 leading-relaxed max-w-[280px]">{event.description}</p>}
+                {event.description && <p className="font-sans text-xs opacity-80 leading-relaxed max-w-[280px] text-[#5c4a3d]/80">{event.description}</p>}
               </div>
             </motion.div>
           );
@@ -78,25 +78,26 @@ const TimelineRustic = ({ schedule, accentColor }: TimelineVariantProps) => (
 );
 
 const TimelineGlass = ({ schedule, accentColor }: TimelineVariantProps) => (
-  <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-white">
+  <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-inherit">
     <div className="text-center mb-16">
-      <h2 className="font-display text-4xl sm:text-5xl font-light drop-shadow-md">Schedule</h2>
+      <p className="font-sans text-[10px] uppercase tracking-[0.35em] font-bold mb-3" style={{ color: accentColor }}>LỊCH TRÌNH</p>
+      <h2 className="font-serif text-4xl sm:text-5xl font-light text-inherit">Lịch Trình Hôn Lễ</h2>
     </div>
     <div className="w-full relative">
-      <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/20 hidden sm:block" />
+      <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-current opacity-15 hidden sm:block" />
       <div className="space-y-8">
         {schedule.map((event: ScheduleEvent, index: number) => {
           const isEven = index % 2 === 0;
           return (
             <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className={`relative flex flex-col sm:flex-row items-center w-full`}>
-              <div className="hidden sm:flex absolute left-1/2 w-12 h-12 -translate-x-1/2 items-center justify-center bg-white/10 backdrop-blur-md border border-white/30 rounded-full z-10 shadow-lg">
-                <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_10px_white]" />
+              <div className="hidden sm:flex absolute left-1/2 w-12 h-12 -translate-x-1/2 items-center justify-center bg-white/80 dark:bg-white/10 backdrop-blur-md border border-white/90 dark:border-white/30 rounded-full z-10 shadow-lg" style={{ borderColor: `${accentColor}50` }}>
+                <div className="w-3.5 h-3.5 rounded-full shadow-[0_0_10px_currentColor]" style={{ backgroundColor: accentColor, color: accentColor }} />
               </div>
               <div className={`w-full sm:w-1/2 ${isEven ? "sm:pr-16 text-right" : "sm:pl-16 sm:order-2 text-left"}`}>
-                <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:bg-white/15 transition-colors">
-                  <span className="font-serif text-3xl font-light mb-2 block" style={{ color: accentColor || "#FFF" }}>{event.time}</span>
-                  <h3 className="font-serif text-xl sm:text-2xl mb-2 font-medium">{event.title}</h3>
-                  {event.description && <p className="font-sans text-xs opacity-80 leading-relaxed">{event.description}</p>}
+                <div className="bg-white/85 dark:bg-white/10 backdrop-blur-xl border border-white/90 dark:border-white/20 p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:bg-white dark:hover:bg-white/15 transition-all text-inherit">
+                  <span className="font-serif text-3xl sm:text-4xl font-semibold mb-2 block" style={{ color: accentColor }}>{event.time}</span>
+                  <h3 className="font-serif text-xl sm:text-2xl mb-2 font-medium text-inherit">{event.title}</h3>
+                  {event.description && <p className="font-sans text-xs opacity-80 leading-relaxed text-inherit">{event.description}</p>}
                 </div>
               </div>
             </motion.div>
@@ -108,10 +109,10 @@ const TimelineGlass = ({ schedule, accentColor }: TimelineVariantProps) => (
 );
 
 const TimelineDefault = ({ schedule, accentColor }: TimelineVariantProps) => (
-  <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
+  <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-inherit">
     <div className="text-center mb-16">
-      <p className="font-sans text-[10px] uppercase tracking-[0.3em] font-bold mb-3 opacity-70" style={{ color: accentColor }}>Timeline</p>
-      <h2 className="font-serif text-4xl sm:text-5xl">Party Schedule</h2>
+      <p className="font-sans text-[10px] uppercase tracking-[0.3em] font-bold mb-3 opacity-70" style={{ color: accentColor }}>LỊCH TRÌNH</p>
+      <h2 className="font-serif text-4xl sm:text-5xl text-inherit">Lịch Trình Hôn Lễ</h2>
     </div>
     <div className="w-full max-w-2xl relative">
       <div className="absolute left-[24px] sm:left-1/2 top-0 bottom-0 w-px bg-current opacity-20" />
@@ -125,8 +126,8 @@ const TimelineDefault = ({ schedule, accentColor }: TimelineVariantProps) => (
                 <span className="font-serif text-3xl sm:text-4xl italic font-medium tracking-wider" style={{ color: accentColor }}>{event.time}</span>
               </div>
               <div className={`pl-14 sm:pl-0 mt-3 sm:mt-0 sm:w-1/2 flex flex-col ${isEven ? "sm:items-start sm:pl-12 sm:order-2" : "sm:items-end sm:pr-12 sm:text-right"}`}>
-                <h3 className="font-serif text-2xl sm:text-3xl mb-3">{event.title}</h3>
-                {event.description && <p className="font-sans text-sm opacity-65 leading-relaxed max-w-[320px]">{event.description}</p>}
+                <h3 className="font-serif text-2xl sm:text-3xl mb-3 text-inherit">{event.title}</h3>
+                {event.description && <p className="font-sans text-sm opacity-75 leading-relaxed max-w-[320px] text-inherit">{event.description}</p>}
               </div>
             </motion.div>
           );
